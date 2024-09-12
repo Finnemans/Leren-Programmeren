@@ -1,3 +1,5 @@
+from termcolor import colored, cprint, COLORS
+
 croissantjes = 17
 stokbroden = 2
 bonnen = 3
@@ -8,4 +10,4 @@ var3 = bonnen * 0.50
 
 antwoord = var1 + var2 - var3
 
-print(f"De feestlunch kost je bij de bakker {antwoord} euro voor de 17 croissantjes en de 2 stokbroden als de 3 kortingsbonnen nog geldig zijn!")
+print(f"De feestlunch kost je bij de bakker {colored(antwoord, 'yellow', attrs=['bold'])} euro voor de {colored(croissantjes, 'yellow', attrs=['bold'])} croissantjes en de {colored(stokbroden, 'yellow', attrs=['bold'])} stokbroden als de {colored(bonnen, 'yellow', attrs=['bold'])} kortingsbonnen nog geldig zijn!")
