@@ -1,12 +1,12 @@
 from termcolor import colored, cprint, COLORS
 
-deelnemers = 4
-entree = 7.45
-vip = 0.37
-viptijd = 9
+deelnemers = int(input('hoeveel mensen gaan mee: '))
+minuten = int(input('hoeveel minuten wil je in de vip: '))
 
-minuten = viptijd * 5
-vipprijs = vip * viptijd * deelnemers
+vipprijs = minuten / 5 * 0.37
+entree = 7.45
+
+vipprijs = vipprijs * deelnemers
 entreeprijs = entree * deelnemers
 totaal = vipprijs + entreeprijs
 

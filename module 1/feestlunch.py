@@ -1,8 +1,8 @@
 from termcolor import colored, cprint, COLORS
 
-croissantjes = 17
-stokbroden = 2
-bonnen = 3
+croissantjes = int(input('hoeveel croissantjes wil je: '))
+stokbroden = int(input('hoeveel stokbroden wil je: '))
+bonnen = int(input('hoeveel bonnen heb je: '))
 
 var1 = croissantjes * 0.39
 var2 = stokbroden * 2.
