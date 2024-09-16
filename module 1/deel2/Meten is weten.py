@@ -10,3 +10,5 @@ if vara > varb:
 elif vara < varb:
     min = vara
     print(f'a is het kleinste getal:{min}')
+else:
+    print('a en b zijn even groot')
