@@ -12,7 +12,5 @@ elif vara < varb:
 else:
     print('a en b zijn even groot')
 
-
-
 print(f'het minimum is:{min}')
 print(f'het maximum is:{max}')
