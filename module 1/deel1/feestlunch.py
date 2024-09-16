@@ -1,12 +1,17 @@
 from termcolor import colored, cprint, COLORS
 
 croissantjes = int(input('hoeveel croissantjes wil je: '))
-stokbroden = int(input('hoeveel stokbroden wil je: '))
-bonnen = int(input('hoeveel bonnen heb je: '))
+prijscroissantjes = int(float(input('prijs per croissantje: ')) * 100)
 
-var1 = croissantjes * 0.39
-var2 = stokbroden * 2.
-var3 = bonnen * 0.50
+stokbroden = int(input('hoeveel stokbroden wil je: '))
+prijsstokbroden = int(float(input('prijs per stokbrood: ')) * 100)
+
+bonnen = int(input('hoeveel bonnen heb je: '))
+prijsbonnen = int(float(input('hoeveel waarden hebben de bonnen: ')) * 100)
+
+var1 = croissantjes * prijscroissantjes
+var2 = stokbroden * prijsstokbroden
+var3 = bonnen * prijsbonnen
 
 antwoord = var1 + var2 - var3
 
