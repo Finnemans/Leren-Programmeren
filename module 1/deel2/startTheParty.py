@@ -14,8 +14,9 @@ start_condition_5 = gastheer or drank
 start_condition_6 = gastheer or gasten or drank
 startcondition7 = naam == 'finn'
 startcondition8 = gasten <= 20
+startcondition9 = naam != 'piet'
 
-if start_condition_1 and start_condition_2 and startcondition8 and startcondition7 and start_condition_3 and start_condition_4 and start_condition_5 and start_condition_6:
+if start_condition_1 and start_condition_2 and startcondition8 and startcondition7 and start_condition_3 and start_condition_4 and start_condition_5 and startcondition9 and start_condition_6:
     print('Start the Party')
 else:
     print('No Party')

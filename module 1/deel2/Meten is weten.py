@@ -10,6 +10,8 @@ elif vara < varb:
     max = varb
     print(f'a is het kleinste getal:{min}')
 else:
+    min = vara
+    max = varb
     print('a en b zijn even groot')
 
 print(f'het minimum is:{min}')
