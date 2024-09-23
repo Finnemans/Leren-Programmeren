@@ -26,21 +26,21 @@ if weken >= 10:
    print(COMPETENTIE_STELLING_7)
    print(OPTIES)
    stel7 = int(input(': '))
-   gemiddelde = stel1 + stel2 + stel3 + stel4 + stel5 + stel6 + stel7
-   antwoord = gemiddelde / 7
+   som = stel1 + stel2 + stel3 + stel4 + stel5 + stel6 + stel7
+   gemiddelde = som / 7
 else:
-   gemiddelde = stel1 + stel2 + stel3 + stel4 +stel5
-   antwoord = gemiddelde / 5
+   som = stel1 + stel2 + stel3 + stel4 +stel5
+   gemiddelde = som / 5
 
 print(' ')
-if antwoord <= 2:
-   print(f'zorgelijk {antwoord}')
+if gemiddelde <= 2:
+   print(f'zorgelijk {gemiddelde}')
    print(COMPETENTIE_ADVIES_ZORGELIJK)
-elif antwoord <= 3:
-   print(f'twijfelachtig {antwoord}')
+elif gemiddelde <= 3:
+   print(f'twijfelachtig {gemiddelde}')
    print(COMPETENTIE_ADVIES_TWIJFELACHTIG)
-elif antwoord >= 4:
-   print(f'geruststellend {antwoord}')
+elif gemiddelde >= 4:
+   print(f'geruststellend {gemiddelde}')
    print(COMPETENTIE_ADVIES_GERUSTSTELLEND)
 
 # Ik kan bonus opdracht C niet.
