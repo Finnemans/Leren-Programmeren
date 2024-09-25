@@ -35,11 +35,6 @@ except:
     print('Dit is geen heel nummer!')
     text3 = ''
 
-
-
-
-
-
 print('************ KASSA BON ************')
 print(text1)
 print(text2)
