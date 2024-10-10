@@ -58,96 +58,116 @@ time.sleep(1)
 
 # === [kamer 7] === #
 print('Kijk nou!')
-print('er ligt hier een rupee.')
+print('Er ligt hier een rupee.')
 rupee += 1
 time.sleep(1)
 
-# === [kamer 2] === #
-print('Je stapt door de deur heen en je ziet een standbeeld voor je.')
-print('Het standbeeld heeft een sleutel vast.')
-print('Op zijn borst zit een numpad met de toetsen 9 t/m 0.')
-print(f'Daarboven zie je een som staan {som_nummer1} {op} {som_nummer2} =?')
-antwoord = int(input('Wat toets je in? '))
+print('Je ziet twee uitgangen:')
+print('1. Rechtdoor naar kamer 2')
+print('2. Rechtsaf naar kamer 3')
 
-if antwoord == som_antwoord:
-    print('Het standbeeld laat de sleutel vallen en je pakt het op.')
-    sleutel += 1
-else:
-    print('Er gebeurt niets....')
+# Keuze maken tussen kamer 2 of kamer 3
+while True:
+    keuze = input('Kies je voor rechtdoor naar kamer 2 of rechtsaf naar kamer 3? (2/3): ')
+    if keuze in ['2', '3']:
+        break
+    else:
+        print('Ongeldige keuze. Kies 2 of 3.')
 
-print('Je ziet een deur achter het standbeeld.')
-print('')
-time.sleep(1)
-
-print('Je ziet twee deuren achter het standbeeld.')
-print('De linker deur leidt naar kamer 6, de rechter naar kamer 3.')
-print('')
-time.sleep(1)
-
-# Keuze maken tussen kamer 6 en kamer 3
-keuze = input('Kies je voor kamer 6 of kamer 3? (6/3): ')
-
-if keuze == '6':
-    # === [kamer 6] === #
-    print('Je opent de deur naar kamer 6.')
-    print('Deze kamer is donker en je hoort een gegrom.')
-    time.sleep(1)
-
-    enemy_attack = 1
-    enemy_defense = 0
-    enemy_health = 2
-
-    print('Je hebt geen wapens of schild om je te helpen. Je gaat de strijd in met je basisvaardigheden.')
-    time.sleep(1)
-
-    player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
+if keuze == '2':
+    # Ga naar kamer 2
+    print('Je besluit rechtdoor te gaan en opent de deur naar kamer 2.')
     print('')
     time.sleep(1)
 
-    print('Na de strijd zie je een deur en gaat kamer 3 binnen...')
+    # === [kamer 2] === #
+    print('Je stapt door de deur en ziet een groot standbeeld voor je.')
+    print('Het standbeeld heeft een sleutel vast.')
+    print('Op zijn borst zit een numpad met de toetsen 9 t/m 0.')
+    print(f'Daarboven zie je een som staan {som_nummer1} {op} {som_nummer2} =?')
+    antwoord = int(input('Wat toets je in? '))
+
+    if antwoord == som_antwoord:
+        print('Het standbeeld laat de sleutel vallen en je pakt het op.')
+        sleutel += 1
+    else:
+        print('Er gebeurt niets....')
+
+    print('Je ziet een deur achter het standbeeld.')
+    print('')
     time.sleep(1)
 
+    print('Je ziet twee deuren achter het standbeeld.')
+    print('De linker deur leidt naar kamer 6, de rechter naar kamer 3.')
+    print('')
+    time.sleep(1)
+
+    # Keuze maken tussen kamer 6 en kamer 3 vanuit kamer 2
+    keuze = input('Kies je voor kamer 6 of kamer 3? (6/3): ')
+
+    if keuze == '6':
+        # Ga naar kamer 6
+        print('Je opent de deur naar kamer 6.')
+        print('Deze kamer is donker en je hoort een gegrom.')
+        time.sleep(1)
+
+        enemy_attack = 1
+        enemy_defense = 0
+        enemy_health = 2
+
+        print('Je hebt geen wapens of schild om je te helpen. Je gaat de strijd in met je basisvaardigheden.')
+        time.sleep(1)
+
+        player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
+        print('')
+        time.sleep(1)
+
+        print('Na de strijd zie je een deur en gaat kamer 3 binnen...')
+        time.sleep(1)
+
 elif keuze == '3':
-    print('Je opent de deur naar kamer 3.')
+    # Ga naar kamer 3 vanuit kamer 7
+    print('Je besluit rechtsaf te slaan en opent de deur naar kamer 3.')
+    print('')
     time.sleep(1)
 
 # === [kamer 3] === #
-items = ['schild', 'zwaard']
-chosen_item = random.choice(items)
-print('Je duwt de deur open en stapt een lange kamer binnen.')
-
 print('Een goblin staat voor je met een tafel vol wapens.')
 print('Hij zegt: "Welkom! Ik verkoop zwaarden en schilden voor 1 rupee elk."')
 print('Wat wil je doen?')
 print('1. Koop een zwaard voor 1 rupee')
 print('2. Koop een schild voor 1 rupee')
 print('3. Koop niets')
-    
+
 while True:
-        keuze = input('Maak een keuze (1/2/3): ')
-        if keuze in ['1', '2', '3']:
-            break
-        else:
-            print('Ongeldige keuze. Kies 1, 2 of 3.')
-    
+    keuze = input('Maak een keuze (1/2/3): ')
+    if keuze in ['1', '2', '3']:
+        break
+    else:
+        print('Ongeldige keuze. Kies 1, 2 of 3.')
+
+chosen_item = None  # Dit zorgt ervoor dat het gekozen item goed wordt gevolgd
+
 if keuze == '1':
-        if rupee >= 1:
-            player_attack += 2
-            rupee -= 1
-            print('Je hebt een zwaard gekocht! Je aanval is nu verhoogd.')
-            print(f'Je hebt nog {rupee} rupee(s).')
-        else:
-            print('Je hebt niet genoeg rupees om een zwaard te kopen.')
+    if rupee >= 1:
+        player_attack += 2
+        rupee -= 1
+        chosen_item = 'zwaard'
+        print('Je hebt een zwaard gekocht! Je aanval is nu verhoogd.')
+        print(f'Je hebt nog {rupee} rupee(s).')
+    else:
+        print('Je hebt niet genoeg rupees om een zwaard te kopen.')
 elif keuze == '2':
-        if rupee >= 1:
-            player_defense += 1
-            rupee -= 1
-            print('Je hebt een schild gekocht! Je verdediging is nu verhoogd.')
-            print(f'Je hebt nog {rupee} rupee(s).')
-        else:
-            print('Je hebt niet genoeg rupees om een schild te kopen.')
+    if rupee >= 1:
+        player_defense += 1
+        rupee -= 1
+        chosen_item = 'schild'
+        print('Je hebt een schild gekocht! Je verdediging is nu verhoogd.')
+        print(f'Je hebt nog {rupee} rupee(s).')
+    else:
+        print('Je hebt niet genoeg rupees om een schild te kopen.')
 elif keuze == '3':
-        print('Je besluit niets te kopen.')
+    print('Je besluit niets te kopen.')
 
 print('')
 time.sleep(1)
@@ -155,7 +175,6 @@ time.sleep(1)
 # === [kamer 4] === #
 print('Je loopt tegen een zombie aan.')
 print('Deze zombie is veel groter dan de vorige!')
-print(f'Gelukkig heb je je {chosen_item}.')
 
 enemy_attack = 2
 enemy_defense = 0
@@ -168,14 +187,17 @@ time.sleep(1)
 
 # === [kamer 5] === #
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
+time.sleep(1)
 print('Tot je verbazing zie je een schatkist in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
 time.sleep(1)
 
 if sleutel == 1:
     print('Je hebt de sleutel!')
+    time.sleep(1)
     print('Je opent de kist en bent verbaasd met wat er in zit!')
 else:
     print('Hoe moet je de kist openmaken zonder sleutel?!')
+    time.sleep(1)
     print('De kist gaat niet open.')
     print('Game Over.')
