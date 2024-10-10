@@ -4,7 +4,9 @@ toets_data = 'Sofie:8,Emma:7,Ahmed:9,Daan:6,Lisa:8,Fatima:7,Ruben:9,Ayoub:6,Bram
 separator = ','
 
 def get_value(data: str, separator: str, position: int) -> str:
-    splitted_strings = data.split(separator)  
+    print(data)
+    splitted_strings = data.split(separator) 
+    print(splitted_strings) 
     if position < len(splitted_strings):  
         return splitted_strings[position]  
 
