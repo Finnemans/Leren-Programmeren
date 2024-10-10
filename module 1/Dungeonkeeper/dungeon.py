@@ -44,6 +44,7 @@ player_defense = 0
 player_health = 3
 sleutel = 0
 rupee = 0
+
 som_nummer1 = random.randint(10, 25)
 som_nummer2 = random.randint(-5, 75)
 op = random.choice(list(operations.keys()))
@@ -64,15 +65,15 @@ time.sleep(1)
 
 print('Je ziet twee uitgangen:')
 print('1. Rechtdoor naar kamer 2')
-print('2. Rechtsaf naar kamer 3')
+print('2. Rechtsaf naar kamer 8 (gokmachine)')
 
-# Keuze maken tussen kamer 2 of kamer 3
+# Keuze maken tussen kamer 2 of kamer 8
 while True:
-    keuze = input('Kies je voor rechtdoor naar kamer 2 of rechtsaf naar kamer 3? (2/3): ')
-    if keuze in ['2', '3']:
+    keuze = input('Kies je voor rechtdoor naar kamer 2 of rechtsaf naar kamer 8? (2/8): ')
+    if keuze in ['2', '8']:
         break
     else:
-        print('Ongeldige keuze. Kies 2 of 3.')
+        print('Ongeldige keuze. Kies 2 of 8.')
 
 if keuze == '2':
     # Ga naar kamer 2
@@ -98,12 +99,12 @@ if keuze == '2':
     time.sleep(1)
 
     print('Je ziet twee deuren achter het standbeeld.')
-    print('De linker deur leidt naar kamer 6, de rechter naar kamer 3.')
+    print('De linker deur leidt naar kamer 6, de rechter naar kamer 8.')
     print('')
     time.sleep(1)
 
-    # Keuze maken tussen kamer 6 en kamer 3 vanuit kamer 2
-    keuze = input('Kies je voor kamer 6 of kamer 3? (6/3): ')
+    # Keuze maken tussen kamer 6 en kamer 8 vanuit kamer 2
+    keuze = input('Kies je voor kamer 6 of kamer 8? (6/8): ')
 
     if keuze == '6':
         # Ga naar kamer 6
@@ -122,55 +123,127 @@ if keuze == '2':
         print('')
         time.sleep(1)
 
-        print('Na de strijd zie je een deur en gaat kamer 3 binnen...')
+        # Ga naar kamer 8 vanuit kamer 6
+        print('Na de strijd zie je een deur die naar kamer 8 leidt...')
+        time.sleep(1)
+        print('Je opent de deur naar kamer 8...')
         time.sleep(1)
 
-elif keuze == '3':
-    # Ga naar kamer 3 vanuit kamer 7
-    print('Je besluit rechtsaf te slaan en opent de deur naar kamer 3.')
-    print('')
-    time.sleep(1)
+        # === [kamer 8] === #
+        print('Je komt een kamer binnen en ziet een fel verlichte gokmachine staan.')
+        print('Er staat: "Wil je een gokje wagen?"')
+        print('Als je wint, verdubbel je je rupees. Als je verliest, verlies je 1 health.')
+        print('Gooi je 7? Dan krijg je 1 rupee en 4 health!')
+
+        keuze = input('Wil je gokken? (ja/nee): ').lower()
+
+        if keuze == 'ja':
+            # Twee zeszijdige dobbelstenen gooien
+            dobbel1 = random.randint(1, 6)
+            dobbel2 = random.randint(1, 6)
+            totaal = dobbel1 + dobbel2
+
+            print(f'Je hebt {dobbel1} en {dobbel2} gegooid. Het totaal is {totaal}.')
+
+            if totaal > 7:
+                rupee *= 2
+                print(f'Gefeliciteerd! Je hebt gewonnen. Je hebt nu {rupee} rupees.')
+            elif totaal < 7:
+                player_health -= 1
+                print(f'Helaas, je hebt verloren en verliest 1 health. Je health is nu {player_health}.')
+                if player_health <= 0:
+                    print('Je health is 0. Je hebt het spel verloren.')
+                    exit()
+            else:  # totaal == 7
+                rupee += 1
+                player_health += 4
+                print('Geweldig! Je hebt precies 7 gegooid.')
+                print(f'Je krijgt 1 rupee en 4 health. Je hebt nu {rupee} rupee(s) en {player_health} health.')
+
+        print('Je gaat door naar kamer 3...')
+        time.sleep(1)
+
+    elif keuze == '8':
+        # Ga naar kamer 8 vanuit kamer 2
+        print('Je opent de deur naar kamer 8...')
+        time.sleep(1)
+
+        # === [kamer 8] === #
+        print('Je komt een kamer binnen en ziet een fel verlichte gokmachine staan.')
+        print('Er staat: "Wil je een gokje wagen?"')
+        print('Als je wint, verdubbel je je rupees. Als je verliest, verlies je 1 health.')
+        print('Gooi je 7? Dan krijg je 1 rupee en 4 health!')
+
+        keuze = input('Wil je gokken? (ja/nee): ').lower()
+
+        if keuze == 'ja':
+            # Twee zeszijdige dobbelstenen gooien
+            dobbel1 = random.randint(1, 6)
+            dobbel2 = random.randint(1, 6)
+            totaal = dobbel1 + dobbel2
+
+            print(f'Je hebt {dobbel1} en {dobbel2} gegooid. Het totaal is {totaal}.')
+
+            if totaal > 7:
+                rupee *= 2
+                print(f'Gefeliciteerd! Je hebt gewonnen. Je hebt nu {rupee} rupees.')
+            elif totaal < 7:
+                player_health -= 1
+                print(f'Helaas, je hebt verloren en verliest 1 health. Je health is nu {player_health}.')
+                if player_health <= 0:
+                    print('Je health is 0. Je hebt het spel verloren.')
+                    exit()
+            else:  # totaal == 7
+                rupee += 1
+                player_health += 4
+                print('Geweldig! Je hebt precies 7 gegooid.')
+                print(f'Je krijgt 1 rupee en 4 health. Je hebt nu {rupee} rupee(s) en {player_health} health.')
+
+        print('Je gaat door naar kamer 3...')
+        time.sleep(1)
 
 # === [kamer 3] === #
+items = ['schild', 'zwaard']
+
 print('Een goblin staat voor je met een tafel vol wapens.')
-print('Hij zegt: "Welkom! Ik verkoop zwaarden en schilden voor 1 rupee elk."')
-print('Wat wil je doen?')
-print('1. Koop een zwaard voor 1 rupee')
-print('2. Koop een schild voor 1 rupee')
-print('3. Koop niets')
+print('Hij kijkt je aan en lijkt te weten hoeveel rupees je hebt.')
+print('Hij zegt: "Ik verkoop zwaarden en schilden. Wat wil je kopen?"')
 
 while True:
-    keuze = input('Maak een keuze (1/2/3): ')
-    if keuze in ['1', '2', '3']:
-        break
+    if rupee >= 2:
+        print('1. Koop een zwaard voor 1 rupee')
+        print('2. Koop een schild voor 1 rupee')
+        print('3. Koop beide voor 2 rupees')
+        print('4. Koop niets')
+    elif rupee == 1:
+        print('1. Koop een zwaard voor 1 rupee')
+        print('2. Koop een schild voor 1 rupee')
+        print('3. Koop niets')
     else:
-        print('Ongeldige keuze. Kies 1, 2 of 3.')
+        print('Je hebt niet genoeg rupees om iets te kopen.')
+        break
 
-chosen_item = None  # Dit zorgt ervoor dat het gekozen item goed wordt gevolgd
-
-if keuze == '1':
-    if rupee >= 1:
+    keuze = input('Maak een keuze (1/2/3/4): ')
+    if keuze == '1' and rupee >= 1:
         player_attack += 2
         rupee -= 1
-        chosen_item = 'zwaard'
         print('Je hebt een zwaard gekocht! Je aanval is nu verhoogd.')
-        print(f'Je hebt nog {rupee} rupee(s).')
-    else:
-        print('Je hebt niet genoeg rupees om een zwaard te kopen.')
-elif keuze == '2':
-    if rupee >= 1:
+    elif keuze == '2' and rupee >= 1:
         player_defense += 1
         rupee -= 1
-        chosen_item = 'schild'
         print('Je hebt een schild gekocht! Je verdediging is nu verhoogd.')
-        print(f'Je hebt nog {rupee} rupee(s).')
+    elif keuze == '3' and rupee >= 2:
+        player_attack += 2
+        player_defense += 1
+        rupee -= 2
+        print('Je hebt zowel een zwaard als een schild gekocht!')
+    elif keuze == '4':
+        print('Je besluit niets te kopen.')
+        break
     else:
-        print('Je hebt niet genoeg rupees om een schild te kopen.')
-elif keuze == '3':
-    print('Je besluit niets te kopen.')
+        print('Ongeldige keuze of niet genoeg rupees.')
 
-print('')
-time.sleep(1)
+print('Je verlaat de kamer en gaat door naar de volgende...')
 
 # === [kamer 4] === #
 print('Je loopt tegen een zombie aan.')
