@@ -1,6 +1,36 @@
-import time, math
+import time
+import math
 import random
 import operator
+
+def fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health):
+    enemy_hit_damage = (enemy_attack - player_defense)
+    
+    if enemy_hit_damage <= 0:
+        print('Jij hebt een te goede verdediging voor de vijand, hij kan je geen schade doen.')
+        enemy_attack_amount = 0  # Geen aanvallen van de vijand
+    else:
+        enemy_attack_amount = math.ceil(player_health / enemy_hit_damage)
+
+    # Bereken de schade die de speler kan toebrengen
+    player_hit_damage = (player_attack - enemy_defense)
+    
+    if player_hit_damage <= 0:
+        print('Je kunt geen schade toebrengen aan de vijand.')
+        player_attack_amount = 0  # Geen aanvallen van de speler
+    else:
+        player_attack_amount = math.ceil(enemy_health / player_hit_damage)
+
+    if player_attack_amount < enemy_attack_amount and player_health > 0:
+        player_health -= enemy_attack_amount * enemy_attack
+        print(f'In {player_attack_amount} rondes versla je de vijand.')
+        print(f'Je health is nu {player_health}.')
+    else:
+        print('Helaas is de vijand te sterk voor je.')
+        print('Game over.')
+        exit()
+
+    return player_health
 
 operations = {
     '+': operator.add,
@@ -8,12 +38,13 @@ operations = {
     '*': operator.mul,
 }
 
+# Speler initiële waarden
 player_attack = 1
 player_defense = 0
 player_health = 3
 sleutel = 0
-som_nummer1 = 1#random.randint(10, 25)
-som_nummer2 = 1#random.randint(-5, 75)
+som_nummer1 = random.randint(10, 25)
+som_nummer2 = random.randint(-5, 75)
 op = random.choice(list(operations.keys()))
 som_antwoord = operations[op](som_nummer1, som_nummer2)
 
@@ -27,21 +58,40 @@ time.sleep(1)
 # === [kamer 2] === #
 print('Je stapt door de deur heen en je ziet een standbeeld voor je.')
 print('Het standbeeld heeft een sleutel vast.')
-print('Op zijn borst zit een numpad met de toesten 9 t/m 0.')
-print(f'Daarboven zie je een som staan {som_nummer1}{op}{som_nummer2} =?')
-antwoord = int(input('Wat toets je in?'))
+print('Op zijn borst zit een numpad met de toetsen 9 t/m 0.')
+print(f'Daarboven zie je een som staan {som_nummer1} {op} {som_nummer2} =?')
+antwoord = int(input('Wat toets je in? '))
 
 if antwoord == som_antwoord:
-    print('Het stadbeeld laat de sleutel vallen en je pakt het op')
+    print('Het standbeeld laat de sleutel vallen en je pakt het op.')
     sleutel += 1
 else:
     print('Er gebeurt niets....')
 
-print('Je zie een deur achter het standbeeld.')
+print('Je ziet een deur achter het standbeeld.')
+print('')
+time.sleep(1)
+
+# === [kamer 6] === #
+print('Je opent de deur naar kamer 6.')
+print('Deze kamer is donker en je hoort een gegrom.')
+time.sleep(1)
+
+
+enemy_attack = 1
+enemy_defense = 0
+enemy_health = 2
+
+
+print('Je hebt geen wapens of schild om je te helpen. Je gaat de strijd in met je basisvaardigheden.')
+time.sleep(1)
+
+player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
 print('')
 time.sleep(1)
 
 # === [kamer 3] === #
+print('Je duwt de deur open en stapt een lange kamer binnen.')
 items = ['schild', 'zwaard']
 chosen_item = random.choice(items)
 
@@ -50,52 +100,36 @@ if chosen_item == 'zwaard':
 elif chosen_item == 'schild':
     player_defense += 1
 
-print('Je duwt hem open en stap een hele lange kamer binnen.')
 print(f'In deze kamer staat een tafel met daarop een {chosen_item}.')
-print(f'Je pakt het {chosen_item} op en houd het bij je.')
+print(f'Je pakt het {chosen_item} op en houdt het bij je.')
 print('Op naar de volgende deur.')
 print('')
 time.sleep(1)
 
 # === [kamer 4] === #
-zombie_attack = 1
-zombie_defense = 0
-zombie_health = 2
-print(f'Dapper met je nieuwe {chosen_item} loop je de kamer binnen.')
 print('Je loopt tegen een zombie aan.')
+print('Deze zombie is veel groter dan de vorige!')
+print(f'Gelukkig heb je je {chosen_item}.')
 
-zombie_hit_damage = (zombie_attack - player_defense)
-if zombie_hit_damage <= 0:
-    print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
-else:
-    zombie_attack_amount = math.ceil(player_health / zombie_hit_damage)
-    
-    player_hit_damage = (player_attack - zombie_defense)
-    player_attack_amount = math.ceil(zombie_health / player_hit_damage)
+enemy_attack = 2
+enemy_defense = 0
+enemy_health = 3
 
-    if player_attack_amount < zombie_attack_amount:
-        player_health = player_health - player_attack_amount * zombie_attack
-        print(f'In {player_attack_amount} rondes versla je de zombie.')
-        print(f'Je health is nu {player_health}.')
-    else:
-        print('Helaas is de zombie te sterk voor je.')
-        print('Game over.')
-        exit()
+# Voer het gevecht uit met de gekozen vijand
+player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
 print('')
 time.sleep(1)
 
 # === [kamer 5] === #
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
-print('Tot je verbazig zie je een schatkist in het midden van de kamer staan.')
+print('Tot je verbazing zie je een schatkist in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
 time.sleep(1)
 
 if sleutel == 1:
     print('Je hebt de sleutel!')
-    print('Je opent de kist en bent verbaast met wat er in zit!')
-    exit()
+    print('Je opent de kist en bent verbaasd met wat er in zit!')
 else:
-    print('Hoe moet je de kist open maken zonder sleutel!')
-    print('De kist gaat niet open')
+    print('Hoe moet je de kist openmaken zonder sleutel?!')
+    print('De kist gaat niet open.')
     print('Game Over.')
-    exit()
