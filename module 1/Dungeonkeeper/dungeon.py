@@ -2,14 +2,12 @@ import time
 import random
 import operator
 
-# Speler initiële waarden
 player_attack = 1
 player_defense = 0
 player_health = 3
 sleutel = 0
 rupee = 0
 
-# Functie voor gevechten
 def fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health):
     player_hit_damage = max(0, player_attack - enemy_defense)
     enemy_hit_damage = max(0, enemy_attack - player_defense)
@@ -43,7 +41,7 @@ time.sleep(1)
 
 # === [kamer 7] === #
 print('Je komt in kamer 7.')
-# Kans van 1 op 10 dat er geen rupee ligt
+
 if random.randint(1, 10) == 1:
     print('De betovering van de wizard is sterk, er ligt geen rupee in deze kamer.')
 else:
@@ -55,7 +53,6 @@ print('Je ziet twee uitgangen:')
 print('1. Rechtdoor naar kamer 2')
 print('2. Rechtsaf naar kamer 8 (gokmachine)')
 
-# Keuze maken tussen kamer 2 of kamer 8
 while True:
     keuze = input('Kies je voor rechtdoor naar kamer 2 of rechtsaf naar kamer 8? (2/8): ')
     if keuze in ['2', '8']:
@@ -64,18 +61,24 @@ while True:
         print('Ongeldige keuze. Kies 2 of 8.')
 
 if keuze == '2':
-    # Ga naar kamer 2
     print('Je besluit rechtdoor te gaan en opent de deur naar kamer 2.')
     time.sleep(1)
 
     # === [kamer 2] === #
     som_nummer1 = random.randint(10, 25)
     som_nummer2 = random.randint(-5, 75)
-    operations = {'+': operator.add, '-': operator.sub, '*': operator.mul}
-    op = random.choice(list(operations.keys()))
-    som_antwoord = operations[op](som_nummer1, som_nummer2)
 
-    print(f'Je ziet een groot standbeeld met een puzzel: {som_nummer1} {op} {som_nummer2} =?')
+    operatoren = [
+        ('+', operator.add),
+        ('-', operator.sub),
+        ('*', operator.mul)
+    ]
+
+    op, functie = random.choice(operatoren)
+
+    som_antwoord = functie(som_nummer1, som_nummer2)
+
+    print(f'Je ziet een groot standbeeld met een puzzel: {som_nummer1} {op} {som_nummer2} = ?')
     antwoord = int(input('Wat is je antwoord? '))
 
     if antwoord == som_antwoord:
@@ -106,7 +109,7 @@ if keuze == '2':
         if keuze == '8':
             print('Je opent de deur naar kamer 8...')
             time.sleep(1)
-        else:  # keuze == '3'
+        else:
             print('Je opent de deur naar kamer 3...')
             time.sleep(1)
 
@@ -124,7 +127,6 @@ if keuze == '8':
     keuze = input('Wil je gokken? (ja/nee): ').lower()
 
     if keuze == 'ja':
-        # Twee zeszijdige dobbelstenen gooien
         dobbel1 = random.randint(1, 6)
         dobbel2 = random.randint(1, 6)
         totaal = dobbel1 + dobbel2
@@ -146,7 +148,6 @@ if keuze == '8':
             print('Geweldig! Je hebt precies 7 gegooid.')
             print(f'Je krijgt 1 rupee en 4 health. Je hebt nu {rupee} rupee(s) en {player_health} health.')
 
-    # Vanuit kamer 8 nu kiezen tussen kamer 3 of kamer 9
     time.sleep(1)
     print(' ')
     print('Je ziet twee deuren:')
@@ -163,7 +164,7 @@ if keuze == '8':
     if keuze == '3':
         print('Je opent de deur naar kamer 3...')
         time.sleep(1)
-    else:  # keuze == '9'
+    else:
         print('Je opent de deur naar kamer 9...')
         time.sleep(1)
         print(' ')
@@ -188,7 +189,6 @@ if keuze == '9':
 print('In kamer 3 staat een goblin met een groter assortiment.')
 print(f'Je hebt {rupee} rupee(s).')
 
-# Check hoeveel rupees de speler heeft
 if rupee >= 3:
     print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
 elif rupee == 2:
