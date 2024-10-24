@@ -187,41 +187,48 @@ if keuze == '9':
 
 # === [kamer 3] === #
 print('In kamer 3 staat een goblin met een groter assortiment.')
-print(f'Je hebt {rupee} rupee(s).')
 
-if rupee >= 3:
-    print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
-elif rupee == 2:
-    print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees (alle rupees)\n4. Koop niets')
-elif rupee == 1:
-    print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop niets')
-else:
-    print('Je hebt geen rupees om iets te kopen.')
+while rupee >= 1:
+   print(f'Je hebt {rupee} rupee(s).')
+   if rupee >= 3:
+       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
+   elif rupee == 2:
+       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
+   elif rupee == 1:
+       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop niets')
+   else:
+       print('Je hebt geen rupees om iets te kopen.')
+       
 
-keuze = input('Maak je keuze (1/2/3/4): ')
+   keuze = input('Maak je keuze (1/2/3/4): ')
 
-if keuze == '1' and rupee >= 1:
-    player_attack += 2
-    rupee -= 1
-    print('Je hebt een zwaard gekocht. Je aanval is nu hoger.')
-elif keuze == '2' and rupee >= 1:
-    player_defense += 1
-    rupee -= 1
-    print('Je hebt een schild gekocht. Je verdediging is nu hoger.')
-elif keuze == '3' and rupee >= 2:
-    sleutel += 1
-    rupee -= 2
-    print('Je hebt de sleutel gekocht! Nu kun je de schatkist openen.')
-elif keuze == '4':
-    print('Je besluit niets te kopen.')
+   if keuze == '1' and rupee >= 1:
+       player_attack += 2
+       rupee -= 1
+       print('Je hebt een zwaard gekocht. Je aanval is nu hoger.')
+   elif keuze == '2' and rupee >= 1:
+       player_defense += 1
+       rupee -= 1
+       print('Je hebt een schild gekocht. Je verdediging is nu hoger.')
+   elif keuze == '3' and rupee >= 2:
+       sleutel += 1
+       rupee -= 2
+       print('Je hebt de sleutel gekocht! Nu kun je de schatkist openen.')
+   elif keuze == '4':
+       print('Je besluit niets te kopen.')
+       break
+   time.sleep(1)
 
 # === [kamer 4] === #
+print(' ')
 print('Je komt een grote zombie tegen.')
 enemy_attack = 2
 enemy_defense = 0
 enemy_health = 3
 
 player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
+time.sleep(1)
+print(' ')
 
 # === [kamer 5] === #
 print('Je komt een schatkist tegen.')

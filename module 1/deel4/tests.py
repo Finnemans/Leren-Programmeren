@@ -12,7 +12,7 @@ expected = f'Maximum: {10} en minimum: {4}'#resultaat
 result = groot(10, 4)
 test('TEST nr1>nr2', expected, result)
 
-expected = f'Maximum: {7} en minimum: {3}' #resultaat
+expected = f'Maximum: 7 en minimum: 3' #resultaat
 result = klein(3, 7) #roep hier je functie aan  waar nr1 kleiner is dan nr2
 test('TEST nr1<nr2', expected, result)
 
