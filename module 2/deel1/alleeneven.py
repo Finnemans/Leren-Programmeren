@@ -1,3 +1,3 @@
-for x in range(21, 50):
-    if x % 2 == 0:
-        print(x)
+for x in range(22, 50, 2):
+        
+    print(x)

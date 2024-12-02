@@ -4,15 +4,15 @@
 # structure of program: 
 coinValues = [1000, 500, 200, 100, 50, 20, 10]  # die euros naar centen
 
-toPay = int(float(input('Amount to pay: ')) * 100)  #
-paid = int(float(input('Paid amount: ')) * 100)  #
-change = paid - toPay  #
+toPay = int(float(input('Amount to pay: ')) * 100)  # te betalen van euros naar centen
+paid = int(float(input('Paid amount: ')) * 100)  # betaalde van euros naar centen
+change = paid - toPay  # berekenen wisselgeld
 
-while change > 0 and len(coinValues) > 0:  
-    coinValue = coinValues.pop(0)  #
-    nrCoins = change // coinValue  #
+while change > 0 and len(coinValues) > 0:  # herhaal als er nog wisselgeld en nog een muntwaarde is
+    coinValue = coinValues.pop(0)  # haalt de muntwaarde uit de list
+    nrCoins = change // coinValue  # bepaalt hoeveel van die munten er nodig zijn
 
-    if nrCoins > 0:  #
+    if nrCoins > 0:  # alleen als er 1 munt van die waarde is
         if coinValue >= 100:  # meer dan 100cent
             print(f"Return maximal {nrCoins}x of {coinValue // 100} euros!") # cent weer als euro
             nrCoinsReturned = int(input(f'How many times of {coinValue // 100} euros did you return? '))
@@ -22,7 +22,7 @@ while change > 0 and len(coinValues) > 0:
         
         change -= nrCoinsReturned * coinValue  # nieuw overig te betalen
 
-if change > 0:
-    print(f'Change not returned: {change} cents')
+if change > 0: # als na de list nog steeds geld over is
+    print(f'Change not returned: {change} cents') # hoeveel wisselgeld nog te betalen
 else:
-    print('Done!')
+    print('Done!') # klaar
