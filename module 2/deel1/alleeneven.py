@@ -1,3 +1,3 @@
-for x in range(22, 50, 2):
+for x in range(22, 51, -1):
         
     print(x)
