@@ -2,8 +2,8 @@ from fruitmand import fruitmand
 round = 0
 notround = 0
 while True:
-    kleur = input('Kies een kleur het fruit: yellow, green, orange, red, brown, ')
-    if kleur in ['yellow', 'green', 'orange', 'red', 'brown']:
+    kleur = input('Kies een kleur het fruit: yellow, green, orange, red, brown, pink, purple, black ')
+    if kleur in ['yellow', 'green', 'orange', 'red', 'brown','pink','purple','black']:
         break
     else:
         print(f'De kleur {kleur} zit er niet in de fruitmand')

@@ -4,7 +4,10 @@ thisdict = {
     "green": "groene",
     "orange": "oranje",
     "red": "rode",
-    "brown": "bruine"
+    "brown": "bruine",
+    "purple": "paarse",
+    "pink": "roze",
+    "black": "zwarte"
 }
 langstenaam = fruitmand[0]
 for fruit in fruitmand:
