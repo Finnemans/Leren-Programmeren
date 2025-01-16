@@ -24,7 +24,7 @@ for ronden in range(1, totaalrondes + 1):
             for x in range(10):
                 print('+10.000!')
                 score += 100000
-                time.sleep(0.5)
+                time.sleep(0.4)
             break
 
         if gok < randomgetal:
