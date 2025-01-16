@@ -1,4 +1,5 @@
 import random
+import time
 
 totaalrondes = 20
 maxgokken = 10
@@ -20,7 +21,10 @@ for ronden in range(1, totaalrondes + 1):
         elif abs(gok - randomgetal) < 50:
             print('Je bent warm!')
         elif gok == 1001:
-            score += 100000000
+            for x in range(10):
+                print('+10.000!')
+                score += 100000
+                time.sleep(0.5)
             break
 
         if gok < randomgetal:
