@@ -32,7 +32,7 @@ if change > 0: # als na de list nog steeds geld over is
 else:
     print('Done!') # klaar
 
-for item1, item2 in zip(munten, aantal):
+for item1, item2 in zip(munten, aantal): # van internet
     if item1 >= 100:  # Voor euro's
         print(f'{item2}x {item1 // 100} euro')
     else:  # Voor centen
