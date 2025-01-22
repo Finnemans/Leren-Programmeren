@@ -89,7 +89,12 @@ if keuze == '2':
     
     time.sleep(1)
     print('Je ziet twee deuren: naar kamer 6 of kamer 8.')
-    keuze = input('Kies je voor kamer 6 of kamer 8? (6/8): ')
+    while True:
+        keuze = input('Kies je voor kamer 6 of kamer 8? (6/8): ')
+        if keuze in ['6','8']:
+            break
+        else:
+            print('Ongeldige keuze. Kies 6 of 8.')
 
     if keuze == '6':
         # === [kamer 6] === #
@@ -104,18 +109,19 @@ if keuze == '2':
         player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
         print('Na de strijd zie je een deur naar kamer 8 of kamer 3.')
         time.sleep(1)
-
+    while True:
         keuze = input('Kies je om door te gaan naar kamer 8 of kamer 3? (8/3): ')
-        if keuze == '8':
-            print('Je opent de deur naar kamer 8...')
-            time.sleep(1)
+        if keuze in ['8', '3']:
+            break
         else:
-            print('Je opent de deur naar kamer 3...')
-            time.sleep(1)
-
-    elif keuze == '8':
+            print('Ongeldige keuze. Kies 8 of 3.')
+    if keuze == '8':
         print('Je opent de deur naar kamer 8...')
         time.sleep(1)
+    else:
+        print('Je opent de deur naar kamer 3...')
+        time.sleep(1)
+
 
 # === [kamer 8] === #
 if keuze == '8':
@@ -142,7 +148,7 @@ if keuze == '8':
             if player_health <= 0:
                 print('Je health is 0. Je hebt het spel verloren.')
                 exit()
-        else:  # totaal == 7
+        else:
             rupee += 1
             player_health += 4
             print('Geweldig! Je hebt precies 7 gegooid.')
@@ -151,8 +157,6 @@ if keuze == '8':
     time.sleep(1)
     print(' ')
     print('Je ziet twee deuren:')
-    print('1. Naar kamer 3')
-    print('2. Naar kamer 9')
 
     while True:
         keuze = input('Kies je voor kamer 3 of kamer 9? (3/9): ')
@@ -189,35 +193,38 @@ if keuze == '9':
 print('In kamer 3 staat een goblin met een groter assortiment.')
 
 while rupee >= 1:
-   print(f'Je hebt {rupee} rupee(s).')
-   if rupee >= 3:
-       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
-   elif rupee == 2:
-       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop een sleutel voor 2 rupees\n4. Koop niets')
-   elif rupee == 1:
-       print('1. Koop een zwaard voor 1 rupee\n2. Koop een schild voor 1 rupee\n3. Koop niets')
-   else:
-       print('Je hebt geen rupees om iets te kopen.')
-       
+    print(f'Je hebt {rupee} rupee(s).')
 
-   keuze = input('Maak je keuze (1/2/3/4): ')
+    print("1. Koop een zwaard (+2 aanval, 1 rupee)")
+    print("2. Koop een schild (+1 verdediging, 1 rupee)")
+    print("3. Koop een sleutel (+1 sleutel, 1 rupee)")
+    print("4. Koop niets")
 
-   if keuze == '1' and rupee >= 1:
-       player_attack += 2
-       rupee -= 1
-       print('Je hebt een zwaard gekocht. Je aanval is nu hoger.')
-   elif keuze == '2' and rupee >= 1:
-       player_defense += 1
-       rupee -= 1
-       print('Je hebt een schild gekocht. Je verdediging is nu hoger.')
-   elif keuze == '3' and rupee >= 2:
-       sleutel += 1
-       rupee -= 2
-       print('Je hebt de sleutel gekocht! Nu kun je de schatkist openen.')
-   elif keuze == '4':
-       print('Je besluit niets te kopen.')
-       break
-   time.sleep(1)
+    keuze = input("Maak je keuze (1/2/3/4): ")
+
+    if keuze == '1' and rupee >= 1:
+        player_attack += 2
+        rupee -= 1
+        print("Je hebt een zwaard gekocht. Je aanval is nu hoger.")
+    elif keuze == '2' and rupee >= 1:
+        player_defense += 1
+        rupee -= 1
+        print("Je hebt een schild gekocht. Je verdediging is nu hoger.")
+    elif keuze == '3' and rupee >= 1:
+        sleutel += 1
+        rupee -= 1
+        print("Je hebt de sleutel gekocht! Nu kun je een schatkist openen.")
+    elif keuze == '4':
+        print("Je besluit niets te kopen.")
+        break
+    else:
+        print("Ongeldige keuze of niet genoeg rupees.")
+
+    if rupee >= 1:
+        print("Je hebt nog steeds rupees over. Je kunt nog iets kopen.")
+
+    time.sleep(1)
+
 
 # === [kamer 4] === #
 print(' ')
