@@ -40,6 +40,7 @@ while True:
             exit()
         else:
             print('Ongeldig antwoord.')
+    
     if dorst == 'y':
         while True:
             drinken = input('wat wil je drinken? ')
@@ -49,13 +50,7 @@ while True:
                 break
             elif drinken == 'bier':
                 prijs = 2.40
-                if stempel == True or bandje == 'rood' or bandje == 'blauw':
-                    break
-                else:
-                    print('sorry je mag geen alcohol bestellen onder de 21')
-                    over = 21 - leeftijd
-                    print(f'Probeer het in {over} jaar nog eens.')
-                    exit()
+                break
             elif drinken == 'champagne':
                 prijs = 12.30
                 break
@@ -63,16 +58,16 @@ while True:
                 print('Sorry geen idee wat je bedoeld, hier is een glaasje water')
                 exit()
 
-    if bandje == False:
+    if vip == False and drinken != 'champagne':
         print(f'Alsjeblieft je {drinken}, dat is dan €{prijs:.2f} Euro')
-    elif bandje == 'rood' or bandje == 'blauw' and drinken != 'champagne':
+    elif vip == True and drinken != 'champagne':
         print('Alstublieft, complimenten van het huis.')
-    elif bandje == False and drinken == 'champagne':
+    elif vip == False and drinken == 'champagne':
         print('Sorry alleen vips mogen champagne bestellen.')
         exit()
     else:
         if drinken == 'champagne':
-            if bandje == 'rood' or bandje == 'blauw':
+            if vip == True:
                 if bandje == 'rood':
                     print('sorry je mag geen alcohol bestellen onder de 21')
                     over = 21 - leeftijd
