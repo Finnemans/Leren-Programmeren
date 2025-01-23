@@ -23,9 +23,9 @@ while change > 0 and len(coinValues) > 0:  # herhaal als er nog wisselgeld en no
             nrCoinsReturned = int(input(f'How many coins of {coinValue} cents did you return? '))
         
         change -= nrCoinsReturned * coinValue  # nieuw overig te betalen
-        
-        munten.append(coinValue)  # Sla waarde in centen op
-        aantal.append(nrCoinsReturned) # sla aantal munten op
+        if nrCoinsReturned > 0: # alleen als er een munt is in de lijst
+            munten.append(coinValue)  # Sla waarde in centen op
+            aantal.append(nrCoinsReturned) # sla aantal munten op
 
 if change > 0: # als na de list nog steeds geld over is
     print(f'Change not returned: {change} cents') # hoeveel wisselgeld nog te betalen
