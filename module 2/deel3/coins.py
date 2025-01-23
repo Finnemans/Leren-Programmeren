@@ -17,10 +17,20 @@ while change > 0 and len(coinValues) > 0:  # herhaal als er nog wisselgeld en no
     if nrCoins > 0:  # alleen als er 1 munt van die waarde is
         if coinValue >= 100:  # meer dan 100cent
             print(f"Return maximal {nrCoins}x of {coinValue // 100} euros!") # cent weer als euro
-            nrCoinsReturned = int(input(f'How many coins of {coinValue // 100} euros did you return? '))
+            while True:
+                nrCoinsReturned = int(input(f'How many coins of {coinValue // 100} euros did you return? '))
+                if nrCoinsReturned <= nrCoins: #als het onder de max is 
+                    break
+                else:
+                    print('Too many coins!')
         else:
             print(f'Return maximal {nrCoins} coins of {coinValue} cents!')
-            nrCoinsReturned = int(input(f'How many coins of {coinValue} cents did you return? '))
+            while True:
+                nrCoinsReturned = int(input(f'How many coins of {coinValue} cents did you return? '))
+                if nrCoinsReturned <= nrCoins: #als het onder de max is 
+                    break
+                else:
+                    print('Too many coins!')
         
         change -= nrCoinsReturned * coinValue  # nieuw overig te betalen
         if nrCoinsReturned > 0: # alleen als er een munt is in de lijst
