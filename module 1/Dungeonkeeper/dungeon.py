@@ -7,28 +7,35 @@ player_defense = 0
 player_health = 3
 sleutel = 0
 rupee = 0
+zwaard = False
+schild = False
+
 
 def fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health):
     player_hit_damage = max(0, player_attack - enemy_defense)
     enemy_hit_damage = max(0, enemy_attack - player_defense)
 
-    if player_hit_damage == 0:
-        print('Je kunt geen schade toebrengen aan de vijand.')
-    else:
-        print(f'Je doet {player_hit_damage} schade aan de vijand.')
+    while player_health > 0 and enemy_health > 0:
+        if player_hit_damage > 0:
+            print(f"Je doet {player_hit_damage} schade aan de vijand.")
+            enemy_health -= player_hit_damage
+        else:
+            print("Je kunt geen schade toebrengen aan de vijand.")
 
-    if enemy_hit_damage == 0:
-        print('De vijand kan jou geen schade toebrengen.')
-    else:
-        player_health -= enemy_hit_damage
-        print(f'De vijand doet {enemy_hit_damage} schade. Je health is nu {player_health}.')
+        if enemy_health <= 0:
+            print("Je hebt de vijand verslagen!")
+            break
 
-    if player_health <= 0:
-        print('Je hebt verloren! Game over.')
-        exit()
+        if enemy_hit_damage > 0:
+            print(f"De vijand doet {enemy_hit_damage} schade aan jou.")
+            player_health -= enemy_hit_damage
+            print(f"Je gezondheid is nu {player_health}.")
+        else:
+            print("De vijand kan jou geen schade toebrengen.")
 
-    if enemy_health <= player_hit_damage:
-        print('Je hebt de vijand verslagen!')
+        if player_health <= 0:
+            print("Je bent verslagen! Game over.")
+            break
 
     return player_health
 
@@ -107,6 +114,12 @@ if keuze == '2':
         enemy_health = 2
 
         player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
+
+        if player_health > 0:
+            print(f"Gefeliciteerd! Je hebt overleefd met {player_health} gezondheid.")
+        else:
+            print("Helaas, je bent verslagen.")
+       
         print('Na de strijd zie je een deur naar kamer 8 of kamer 3.')
         time.sleep(1)
     while True:
@@ -140,7 +153,7 @@ if keuze == '8':
         print(f'Je hebt {dobbel1} en {dobbel2} gegooid. Het totaal is {totaal}.')
 
         if totaal > 7:
-            rupee *= 2
+            rupee += 1
             print(f'Gefeliciteerd! Je hebt gewonnen. Je hebt nu {rupee} rupees.')
         elif totaal < 7:
             player_health -= 1
@@ -192,25 +205,42 @@ if keuze == '9':
 # === [kamer 3] === #
 print('In kamer 3 staat een goblin met een groter assortiment.')
 
+sleutel = 0
+rupee = 3  # Zorg dat de speler start met rupees
+zwaard = False
+schild = False
+player_attack = 0
+player_defense = 0
+
 while rupee >= 1:
-    print(f'Je hebt {rupee} rupee(s).')
+    print(f"Je hebt {rupee} rupee(s).")
 
-    print("1. Koop een zwaard (+2 aanval, 1 rupee)")
-    print("2. Koop een schild (+1 verdediging, 1 rupee)")
-    print("3. Koop een sleutel (+1 sleutel, 1 rupee)")
+    keuzes = []
+    if not zwaard:
+        print("1. Koop een zwaard (+2 aanval, 1 rupee)")
+        keuzes.append('1')
+    if not schild:
+        print("2. Koop een schild (+1 verdediging, 1 rupee)")
+        keuzes.append('2')
+    if sleutel == 0:
+        print("3. Koop een sleutel (+1 sleutel, 1 rupee)")
+        keuzes.append('3')
     print("4. Koop niets")
+    keuzes.append('4')
 
-    keuze = input("Maak je keuze (1/2/3/4): ")
+    keuze = input(f"Maak je keuze ({'/'.join(keuzes)}): ")
 
-    if keuze == '1' and rupee >= 1:
+    if keuze == '1' and '1' in keuzes:
         player_attack += 2
         rupee -= 1
+        zwaard = True
         print("Je hebt een zwaard gekocht. Je aanval is nu hoger.")
-    elif keuze == '2' and rupee >= 1:
+    elif keuze == '2' and '2' in keuzes:
         player_defense += 1
         rupee -= 1
+        schild = True
         print("Je hebt een schild gekocht. Je verdediging is nu hoger.")
-    elif keuze == '3' and rupee >= 1:
+    elif keuze == '3' and '3' in keuzes:
         sleutel += 1
         rupee -= 1
         print("Je hebt de sleutel gekocht! Nu kun je een schatkist openen.")
@@ -222,6 +252,9 @@ while rupee >= 1:
 
     if rupee >= 1:
         print("Je hebt nog steeds rupees over. Je kunt nog iets kopen.")
+    else:
+        print("Je hebt geen rupees meer. De winkel sluit.")
+
 
     time.sleep(1)
 
@@ -229,16 +262,24 @@ while rupee >= 1:
 # === [kamer 4] === #
 print(' ')
 print('Je komt een grote zombie tegen.')
+time.sleep(1)
 enemy_attack = 2
 enemy_defense = 0
 enemy_health = 3
 
 player_health = fight_enemy(player_attack, player_defense, player_health, enemy_attack, enemy_defense, enemy_health)
+
+if player_health > 0:
+    print(f"Gefeliciteerd! Je hebt overleefd met {player_health} gezondheid.")
+else:
+    print("Helaas, je bent verslagen.")
+    
 time.sleep(1)
 print(' ')
 
 # === [kamer 5] === #
 print('Je komt een schatkist tegen.')
+time.sleep(1)
 if sleutel == 1:
     print('Je opent de kist!')
 else:
