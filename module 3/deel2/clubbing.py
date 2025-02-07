@@ -65,6 +65,8 @@ while True:
         exit()
     elif drinken == 'bier' and stempel == False:
         print('sorry je mag geen alcohol bestellen onder de 21')
+        over = 21 - leeftijd
+        print(f'Probeer het in {over} jaar nog eens.')
         exit()
     else:
         ''
