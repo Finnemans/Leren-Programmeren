@@ -20,6 +20,7 @@ while True:
             vip = False
 
     if vip == True:
+        stempel = 0
         if leeftijd >= 21:
             bandje = 'blauw'
         else:
@@ -30,6 +31,8 @@ while True:
         if leeftijd >= 21:
             print('Je krijgt van mij een stempel.')
             stempel = True
+        else:
+            stempel = False
 
     while True:
         dorst = input('Wil je wat drinken? Y/N: ')
@@ -57,6 +60,15 @@ while True:
             else:
                 print('Sorry geen idee wat je bedoeld, hier is een glaasje water')
                 exit()
+    if drinken == 'bier' and bandje == 'blauw':
+        print('Alstublieft, complimenten van het huis.')
+        exit()
+    elif drinken == 'bier' and stempel == False:
+        print('sorry je mag geen alcohol bestellen onder de 21')
+        exit()
+    else:
+        ''
+
 
     if vip == False and drinken != 'champagne':
         print(f'Alsjeblieft je {drinken}, dat is dan €{prijs:.2f} Euro')

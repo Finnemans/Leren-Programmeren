@@ -8,6 +8,7 @@ score = 0
 for ronden in range(1, totaalrondes + 1):
     randomgetal = random.randint(1, 1000)
     print(f'Ronde {ronden}.')
+    print(randomgetal)
 
     for raden in range(1, maxgokken + 1):
         gok = int(input('Raad het getal van 1 tot 1000: '))
