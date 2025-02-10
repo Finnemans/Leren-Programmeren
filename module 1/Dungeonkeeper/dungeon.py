@@ -205,13 +205,6 @@ if keuze == '9':
 # === [kamer 3] === #
 print('In kamer 3 staat een goblin met een groter assortiment.')
 
-sleutel = 0
-rupee = 3  # Zorg dat de speler start met rupees
-zwaard = False
-schild = False
-player_attack = 0
-player_defense = 0
-
 while rupee >= 1:
     print(f"Je hebt {rupee} rupee(s).")
 

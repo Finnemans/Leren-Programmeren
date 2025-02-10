@@ -35,8 +35,7 @@ while True:
             stempel = False
 
     while True:
-        dorst = input('Wil je wat drinken? Y/N: ')
-        dorst.lower()
+        dorst = input('Wil je wat drinken? Y/N: ').lower
         if dorst == 'y':
             break
         elif dorst == 'n':
@@ -46,8 +45,7 @@ while True:
     
     if dorst == 'y':
         while True:
-            drinken = input('wat wil je drinken? ')
-            drinken.lower()
+            drinken = input('wat wil je drinken? ').lower
             if drinken == 'cola':
                 prijs = 1.80
                 break

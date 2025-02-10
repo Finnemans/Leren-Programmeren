@@ -2,7 +2,7 @@
 # number of student: 99080585
 # purpose of program: wisselgeld
 # structure of program: 
-coinValues = [500, 200, 100, 50, 20, 10]  # die euros naar centen
+coinValues = [500, 200, 100, 50, 20, 10, 5, 2, 1]  # die euros naar centen
 munten = []
 aantal = []
 
