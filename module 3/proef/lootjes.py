@@ -23,9 +23,17 @@ while True:
 
 lootjes = namen.copy()
 while True:
-    random.shuffle(lootjes)
-    if all(namen[i] != lootjes[i] for i in range(len(namen))):
+    random.shuffle(lootjes) 
+    probleem = False
+    # if all(namen[i] != lootjes[i] for i in range(len(namen))):
+    #     break
+    for i in range(len(namen)):
+        if lootjes[i] == namen[i]:
+            probleem = True
+            break
+    if not probleem:
         break
+
 
 while True:
     vraag = input("Voer je naam in om te zien wie je hebt (typq 'stop' om te stoppen): ")
