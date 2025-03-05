@@ -1,11 +1,5 @@
 from termcolor import colored
-from functie import verzamel_personen
-
-def check_volwassen(leeftijd):
-    if leeftijd >= 18:
-        return colored(f"al {leeftijd} jaar", "red")
-    else:
-        return colored("nog niet", "red")
+from functie import verzamel_personen, check_volwassen
 
 personen_lijst = verzamel_personen()
 
