@@ -18,5 +18,7 @@ def verzamel_personen():
         if keuze.lower() == 'stop':
             break
         persoon = vraag_naam_en_leeftijd()  # slaat op als persoon
+        if persoon["age"] > 18:
+            persoon["age"] -= 18
         personen.append(persoon)  # doet het persoon in lijst
     return personen
