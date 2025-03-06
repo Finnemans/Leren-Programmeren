@@ -7,6 +7,7 @@ def vraag_naam_en_leeftijd():
 
 def check_volwassen(leeftijd):
     if leeftijd >= 18:
+        leeftijd -= 18
         return colored(f"al {leeftijd} jaar", "red")
     else:
         return colored("nog niet", "red")
@@ -18,7 +19,5 @@ def verzamel_personen():
         if keuze.lower() == 'stop':
             break
         persoon = vraag_naam_en_leeftijd()  # slaat op als persoon
-        if persoon["age"] > 18:
-            persoon["age"] -= 18
         personen.append(persoon)  # doet het persoon in lijst
     return personen
