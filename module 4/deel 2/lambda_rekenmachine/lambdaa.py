@@ -1,11 +1,6 @@
 calculations = {
-    "optellen": lambda getal1, getal2: f"{getal1} + {getal2} = {getal1 + getal2}",
-    "aftrekken": lambda getal1, getal2: f"{getal1} - {getal2} = {getal1 - getal2}",
-    "vermenigvuldigen": lambda getal1, getal2: f"{getal1} * {getal2} = {getal1 * getal2}",
-    "delen": lambda getal1, getal2: f"{getal1} / {getal2} = {'Error: Kan niet delen door nul' if getal2 == 0 else getal1 / getal2}"
+    "add": lambda num1, num2: int(num1 + num2),
+    "subtract": lambda num1, num2: int(num1 - num2),
+    "multiply": lambda num1, num2: int(num1 * num2),
+    "divide": lambda num1, num2: "Error: Cannot divide by zero" if num2 == 0 else (int(num1 / num2) if num1 % num2 == 0 else num1 / num2)
 }
-
-print(calculations["optellen"](10, 5))
-print(calculations["aftrekken"](10, 5))
-print(calculations["vermenigvuldigen"](10, 5))
-print(calculations["delen"](10, 5))
