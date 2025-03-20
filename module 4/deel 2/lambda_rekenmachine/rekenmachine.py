@@ -40,7 +40,6 @@ while True:
             n2 = 2
         else:
             print("Ongeldige keuze. Probeer opnieuw.")
-            continue
 
         if keuze == "A":
             result = lambdaa.calculations["add"](n1, n2)
