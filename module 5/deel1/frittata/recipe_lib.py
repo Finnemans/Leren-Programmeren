@@ -31,34 +31,43 @@ def round_quarter(amount: float) -> float:
         return round(amount)
     else:
         quarter = 0.25
-        lower = math.floor(amount / quarter) * quarter
-        upper = lower + quarter
-
-        if (amount - lower) >= (upper - amount):
-            return round(upper, 2)
-        else:
-            return round(lower, 2)
+        x = round(amount / quarter)
+        return round(x * quarter, 2)
 
 # returns single or plural description of a string 'single desciption|plural description' 
 # depending on amount
 def str_single_plural(amount: float, txt: str) -> str:
-  pass
+  x = txt.split('|') 
+  if amount <= 1:
+     return x[0]
+  else:
+     return x[1]
 
 
 # returns description of single or plural units
 def str_units(amount: float, unit: str) -> str:
-  pass
+    if unit == UNIT_SPOONS:
+        txt = TXT_SPOONS
+    elif unit == UNIT_TEASPOONS:
+        txt = TXT_TEASPOONS
+    elif unit == UNIT_CUPS:
+        txt = TXT_CUPS
+    else:
+        return ''
+
+    return str_single_plural(amount, txt)
 
 
 # returns amount in string with 1/4 or 1/2 or 3/4
 TXT_FRACTIONS = ('','¼','½','¾')
-def str_amount_fraction(amount: float) -> str:  
-  amount = round_quarter(amount) 
-  ints = int(amount)
-  quarter = int((amount - ints) / 0.25)
-  str_ints = str(ints) if ints > 0 else ''
-  return str_ints + TXT_FRACTIONS[quarter]
 
+def str_amount_fraction(amount: float) -> str:
+
+    ints = int(amount)
+    quarter = math.floor((amount - ints) / 0.25 + 1e-9)  
+    quarter = min(max(int(quarter), 0), len(TXT_FRACTIONS) - 1)
+    str_ints = str(ints) if ints > 0 else ''
+    return str_ints + TXT_FRACTIONS[quarter]
 
 # units in ml
 ML_SPOON = 15 # one spoon contains 15 ml

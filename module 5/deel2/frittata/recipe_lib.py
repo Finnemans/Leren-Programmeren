@@ -50,15 +50,22 @@ def str_single_plural(amount: float, txt: str) -> str:
 
 # returns description of single or plural units
 def str_units(amount: float, unit: str) -> str:
-  if unit == UNIT_CUPS:
-    unit_txt = str_single_plural(amount, TXT_CUPS)
-  elif unit == UNIT_PIECES:
-    unit_txt = str_single_plural(amount, TXT_PIECES)
-  elif unit == UNIT_SPOONS:
-    unit_txt = str_single_plural(amount, TXT_SPOONS)
-  elif unit == UNIT_TEASPOONS:
-    unit_txt = str_single_plural(amount, TXT_TEASPOONS)
-  return unit_txt
+    is_singular = amount <= 1
+
+    if unit == UNIT_CUPS:
+        unit_txt = TXT_CUPS
+    elif unit == UNIT_PIECES:
+        unit_txt = TXT_PIECES
+    elif unit == UNIT_SPOONS:
+        unit_txt = TXT_SPOONS
+    elif unit == UNIT_TEASPOONS:
+        unit_txt = TXT_TEASPOONS
+    else:
+        return unit
+
+    return str_single_plural(1 if is_singular else 2, unit_txt)
+
+
 
 # returns amount in string with 1/4 or 1/2 or 3/4
 TXT_FRACTIONS = ('','¼','½','¾')

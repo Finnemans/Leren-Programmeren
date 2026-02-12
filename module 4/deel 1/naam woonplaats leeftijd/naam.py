@@ -11,7 +11,7 @@ def verzamel_personen():
         if keuze.lower() == 'stop':
             break
         persoon = vraag_naam_en_leeftijd() #slaat op als persoon
-        personen.append(persoon) #doet t persoon in lijst
+        personen.append(persoon) #doet t persoon in de lijst
     return personen
 
 personen_lijst = verzamel_personen()

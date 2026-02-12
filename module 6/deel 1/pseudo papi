@@ -1,0 +1,59 @@
+START
+Toon: 'Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.'
+
+HERHAAL stap1:
+
+    Toon vraag: "Hoeveel bolletjes wilt u?"
+    Lees invoer → aantal
+
+    ALS invoer geen getal:
+        Toon: "Sorry, dat snap ik niet..."
+        GA NAAR stap1
+
+    ALS 1 t/m 3:
+        ga_naar_stap2 = JA
+
+    ANDERS ALS 4 t/m 8:
+        Toon: "Dan krijgt u van mij een bakje met {aantal} bolletjes"
+        verpakking = "bakje"
+        ga_naar_stap2 = NEE
+
+    ANDERS ALS > 8:
+        Toon: "Sorry, zulke grote bakken hebben we niet"
+        GA NAAR stap1
+
+    ANDERS:
+        Toon: "Sorry, dat snap ik niet..."
+        GA NAAR stap1
+
+
+    ALS ga_naar_stap2 = JA:
+        HERHAAL stap2:
+ 
+            Toon vraag: "Wilt u deze {aantal} bolletje(s) in een hoorntje of een bakje?"
+            Lees invoer → verpakking
+
+            ALS verpakking = "bakje" OF "hoorntje":
+                GA VERDER
+            ANDERS:
+                Toon: "Sorry, dat snap ik niet..."
+                GA NAAR stap2
+
+
+    Toon: "Hier is uw {verpakking} met {aantal} bolletje(s)."
+
+    HERHAAL stap3:
+
+        Toon vraag: "Wilt u nog meer bestellen?"
+        Lees invoer → antwoord
+
+        ALS antwoord = "ja":
+            GA NAAR stap1
+
+        ALS antwoord = "nee":
+            Toon: "Bedankt en tot ziens!"
+            STOP
+
+        ANDERS:
+            Toon: "Sorry, dat snap ik niet..."
+            GA NAAR stap3

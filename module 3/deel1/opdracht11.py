@@ -5,7 +5,7 @@ list = []
 for fruit in fruitmand:
     list.append(fruit['color'])
 while True:
-    kleur = input('Kies een kleur het fruit: yellow, green, orange, red, brown, pink, purple, black ')
+    kleur = input('Kies een kleur van het fruit: yellow, green, orange, red, brown, pink, purple, black ')
     if kleur in list:
         break
     else:
